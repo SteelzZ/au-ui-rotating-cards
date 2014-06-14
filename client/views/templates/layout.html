@@ -1,0 +1,85 @@
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+
+<body></body>
+
+<template name="layout">
+    {{> cmsinn_controls_left}}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+              <h1 class="text-center title">
+                  <a href="{{nav 'brand' 'href'}}" data-au-label="brand" data-au-nav="brand">{{c 'brand'}}</a><br/>
+                  <small data-au-label="tagline">{{c 'tagline'}}</small>
+              </h1>
+            </div>
+        </div>
+        <div class="row" data-au-record="{{path}}cards">
+            {{#with recordByPlace path 'cards'}}
+                {{#each sorted children _id}}
+                    {{#with this}}
+                        <div class="col-sm-4" data-au-sort-order="{{_id}}" data-au-deletable="{{_id}}">
+                           <div class="card-container">
+                                <div class="card">
+                                    <div class="front">
+                                        <div class="cover">
+                                            <img src="{{loadImg '[background]' '600x350' _id}}" data-au-image="{{_id}}[background]"/>
+                                        </div>
+                                        <div class="user">
+                                            <img class="img-circle" src="{{loadImg '[photo]' '225x225' _id}}" data-au-image="{{_id}}[photo]"/>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h3 class="name" data-au-label="{{_id}}[name]">{{c '[name]' _id}}</h3>
+                                                <p class="profession" data-au-label="{{_id}}[profession]">{{c '[profession]' _id}}</p>
+                                                <h5><i class="fa fa-map-marker fa-fw text-muted"></i> <span data-au-label="{{_id}}[where]">{{c '[where]' _id}}</span></h5>
+                                                <h5><i class="fa fa-building-o fa-fw text-muted"></i> <span data-au-label="{{_id}}[company]">{{c '[company]' _id}}</span></h5>
+                                                <h5><i class="fa fa-envelope-o fa-fw text-muted"></i> <span data-au-label="{{_id}}[email]">{{c '[email]' _id}}</span></h5>
+                                            </div>
+                                            <div class="footer">
+                                                <div class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end front panel -->
+                                    <div class="back">
+                                        <div class="header">
+                                            <h5 class="motto" data-au-label="{{_id}}[moto]">{{c '[moto]' _id}}</h5>
+                                        </div> 
+                                        <div class="content">
+                                            <div class="main">
+                                                <h4 class="text-center" data-au-label="experience">{{c 'experience'}}</h4>
+                                                <p data-type="wysihtml5" data-au-label="{{_id}}[experience]">{{{c '[experience]' _id}}}</p>
+                                                <h4 class="text-center" data-au-label="areas_of_expertise">{{c 'areas_of_expertise'}}</h4>
+                                                <p data-type="wysihtml5" data-au-label="{{_id}}[expertise]">{{{c '[expertise]' _id}}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <div class="social-links text-center">
+                                                <a data-au-label="fb_link" href="{{c 'fb_link'}}" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                                                <a data-au-label="google_link" href="{{c 'google_link'}}" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                                                <a data-au-label="twitter_link" href="{{c 'twitter_link'}}" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end back panel -->
+                                </div> <!-- end card -->
+                            </div> <!-- end card-container --> 
+                        </div>        
+                    {{/with}}
+                {{/each}}
+            {{/with}}
+
+        </div>
+    </div>
+</template>
